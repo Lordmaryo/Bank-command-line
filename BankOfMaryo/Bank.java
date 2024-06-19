@@ -47,6 +47,27 @@ public class Bank {
         }
     }
 
+    public void checkBalance() {
+        System.out.print("Enter 4-digit PIN to continue: ");
+        inputPin = input.nextInt();
+        if (inputPin == pin) {
+            System.out.println("Balance: " + balance);
+        } else {
+            int tries = 4;
+            while (tries > 1) {
+                System.out.println("Incorrect Pin. you have " + (tries - 1) + " more tries");
+                System.out.print("Enter 4-digit PIN to continue: ");
+                inputPin = input.nextInt();
+                if (inputPin == pin) {
+                    System.out.println("Balance: " + balance);
+                    return;
+                }
+                tries--;
+            }
+            System.out.println("Incorrect Pin. you have No more tries");
+        }
+    }
+
     // Initiate action methods
     private void initiateWithdrawal() {
         System.out.print("Enter amount to withdraw: ");

@@ -25,16 +25,18 @@ public class BankingApp {
                     break;
                 case 2:
                     if (bankList.userName == null) {
-                        System.out.println("To Deposit, you need to have an account, select option 1.");
+                        System.out.println("To proceed you need to have an account, select option 1.");
                     } else bankList.depositMoney();
                     break;
                 case 3:
                     if (bankList.userName == null) {
-                        System.out.println("To withdraw, you need to have an account, select option 1.");
+                        System.out.println("To proceed you need to have an account, select option 1.");
                     } else bankList.withdrawMoney();
                     break;
                 case 4:
-                    System.out.println("4 selected");
+                    if (bankList.userName == null) {
+                        System.out.println("To proceed you need to have an account, select option 1.");
+                    } else bankList.checkBalance();
                     break;
                 case 5:
                     System.out.println("Exiting...");
