@@ -29,7 +29,9 @@ public class BankingApp {
                     } else bankList.depositMoney();
                     break;
                 case 3:
-                    System.out.println("3 selected");
+                    if (bankList.userName == null) {
+                        System.out.println("To withdraw, you need to have an account, select option 1.");
+                    } else bankList.withdrawMoney();
                     break;
                 case 4:
                     System.out.println("4 selected");
