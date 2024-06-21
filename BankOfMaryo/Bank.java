@@ -7,8 +7,7 @@ public class Bank {
     String userName;
     double balance;
     Scanner input = new Scanner(System.in);
-    Random random = new Random(); // create random pin for users
-    int pin = 1000 + random.nextInt(9000);
+    int pin;
     int inputPin;
 
     public void createAccount() {
@@ -20,10 +19,11 @@ public class Bank {
         if (isUserInputBlank) {
             System.out.println("User name cannot be blank.");
             System.out.print("Enter account holder's name: ");
-            userInput = input.nextLine();
+            input.nextLine();
         } else {
             this.userName = userInput;
-            System.out.println("Welcome " + this.userName + ". Your 4-digit PIN is: " + pin);
+            askUserPin();
+            System.out.println("Welcome " + this.userName + "!");
         }
     }
 
@@ -115,5 +115,24 @@ public class Bank {
             tries--;
         }
         System.out.println("Incorrect Pin. you have No more tries");
+    }
+
+    private void askUserPin() {
+        System.out.print("Create 4-digit PIN to run transactions: ");
+        String userInputPin = input.nextLine();
+
+        while (true) {
+            if (userInputPin.trim().length() != 4) {
+                System.out.print("PIN must be 4-digit: ");
+                userInputPin = input.nextLine();
+            } else if (userInputPin.matches("[a-zA-Z]+")) {
+                System.out.print("PIN must not contain letters: ");
+                userInputPin = input.nextLine();
+            } else {
+                pin = Integer.parseInt(userInputPin);
+                break;
+            }
+        }
+
     }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BankingApp {
     public static void main(String[] args) {
         Bank bankList = new Bank();
-        System.out.println("Welcome to the bank of LordMaryo");
+        System.out.println("Welcome to the Bank of LordMaryo");
         Scanner input = new Scanner(System.in);
         int choice;
 
