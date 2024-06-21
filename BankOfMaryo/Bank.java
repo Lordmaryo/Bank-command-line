@@ -1,6 +1,5 @@
 package BankOfMaryo;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Bank {
@@ -13,17 +12,19 @@ public class Bank {
     public void createAccount() {
         System.out.print("Enter account holder's name: ");
         String userInput = input.nextLine();
-        boolean isUserInputBlank = userInput == null || userInput.trim().isEmpty();
 
-        // TODO: make sure correct User name is stored after second try
-        if (isUserInputBlank) {
-            System.out.println("User name cannot be blank.");
-            System.out.print("Enter account holder's name: ");
-            input.nextLine();
-        } else {
-            this.userName = userInput;
-            askUserPin();
-            System.out.println("Welcome " + this.userName + "!");
+        while (true) {
+            boolean isUserInputBlank = userInput == null || userInput.trim().isEmpty();
+            if (isUserInputBlank) {
+                System.out.println("User name cannot be blank.");
+                System.out.print("Enter account holder's name: ");
+                userInput = input.nextLine();
+            } else {
+                this.userName = userInput;
+                askUserPin();
+                System.out.println("Welcome " + this.userName + "!");
+                break;
+            }
         }
     }
 
@@ -123,16 +124,17 @@ public class Bank {
 
         while (true) {
             if (userInputPin.trim().length() != 4) {
-                System.out.print("PIN must be 4-digit: ");
+                System.out.println("PIN must be 4-digit.");
+                System.out.print("Create 4-digit PIN to run transactions: ");
                 userInputPin = input.nextLine();
-            } else if (userInputPin.matches("[a-zA-Z]+")) {
-                System.out.print("PIN must not contain letters: ");
+            } else if (!userInputPin.matches("\\d+")) {
+                System.out.println("PIN must be numerical.");
+                System.out.print("Create 4-digit PIN to run transactions: ");
                 userInputPin = input.nextLine();
             } else {
                 pin = Integer.parseInt(userInputPin);
                 break;
             }
         }
-
     }
 }
